@@ -63,9 +63,13 @@ class Ui_database_window(object):
         self.viewInFileButton.setObjectName("viewInFileButton")
         self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
         self.tableWidget.setGeometry(QtCore.QRect(10, 10, 611, 361))
+        self.tableWidget.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContentsOnFirstShow)
+        self.tableWidget.setShowGrid(True)
+        self.tableWidget.setGridStyle(QtCore.Qt.SolidLine)
         self.tableWidget.setRowCount(6)
-        self.tableWidget.setColumnCount(3)
+        self.tableWidget.setColumnCount(4)
         self.tableWidget.setObjectName("tableWidget")
+        self.tableWidget.horizontalHeader().setCascadingSectionResizes(True)
         database_window.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(database_window)
@@ -76,3 +80,6 @@ class Ui_database_window(object):
         database_window.setWindowTitle(_translate("database_window", "MainWindow"))
         self.showGraphicButton.setText(_translate("database_window", "Show Graphic"))
         self.viewInFileButton.setText(_translate("database_window", "View in file"))
+        self.tableWidget.setSortingEnabled(True)
+
+

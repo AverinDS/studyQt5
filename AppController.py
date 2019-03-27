@@ -1,10 +1,9 @@
 from PyQt5 import QtWidgets
 
-from view.DatabaseView import DatabaseView
+from view.TableView import TableView
 import sys
 
-
 app = QtWidgets.QApplication([])
-application = DatabaseView()
+application = TableView()
 application.show()
 sys.exit(app.exec())
