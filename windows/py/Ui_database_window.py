@@ -76,5 +76,3 @@ class Ui_database_window(object):
         database_window.setWindowTitle(_translate("database_window", "MainWindow"))
         self.showGraphicButton.setText(_translate("database_window", "Show Graphic"))
         self.viewInFileButton.setText(_translate("database_window", "View in file"))
-
-
