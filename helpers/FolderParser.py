@@ -1,4 +1,5 @@
-import re, os
+import os
+import re
 
 random_name = "RAND"
 season_name = "SEASON"
@@ -18,19 +19,22 @@ down = "Падение "
 class FolderParser:
     # list of lists. Every list contains filename, trend, season, rand component
     features = []
-    req_exprA = re.compile("A=[+-?]\d*")
+    req_expr_a = re.compile("A=[+-?]\d*")
 
     def parse(self):
-        self.features = []
+        self.features.clear()
         for folder in folders:
+            if not os.path.exists(path_to_timeseries + folder):
+                continue
+
             file_names = os.listdir(path_to_timeseries + folder)
 
             for file_name in file_names:
                 patterns_file = [file_name]
 
                 # find A coef
-                if self.req_exprA.findall(file_name, 0) != []:
-                    coef_a = int(str(self.req_exprA.findall(file_name, 0)[0]).replace("A=", ""))
+                if self.req_expr_a.findall(file_name, 0):
+                    coef_a = int(str(self.req_expr_a.findall(file_name, 0)[0]).replace("A=", ""))
                     if coef_a is not None and coef_a > 0:
                         patterns_file.append(up + str(coef_a))
                     else:
@@ -39,20 +43,20 @@ class FolderParser:
                         else:
                             patterns_file.append("-")
 
-                # find random component
-                if file_name.__contains__(random_name):
+                # find trend component
+                if folder.__contains__(lin_name):
                     patterns_file.append("+")
                 else:
                     patterns_file.append("-")
 
                 #  find season component
-                if file_name.__contains__(season_name):
+                if folder.__contains__(season_name):
                     patterns_file.append("+")
                 else:
                     patterns_file.append("-")
 
-                # find trend component
-                if file_name.__contains__(lin_name):
+                # find rand component
+                if folder.__contains__(random_name):
                     patterns_file.append("+")
                 else:
                     patterns_file.append("-")
@@ -60,3 +64,19 @@ class FolderParser:
                 self.features.append(patterns_file)
 
         return self.features
+
+    def get_points_from_file_by_filename(self, filename):
+        points_x = []
+        points_y = []
+        for folder in folders:
+            if not os.path.exists(path_to_timeseries + folder):
+                continue
+            file_names = os.listdir(path_to_timeseries + folder)
+            if file_names.__contains__(filename):
+                with open(path_to_timeseries + folder + "/" + filename) as file:
+                    for line in file.readlines():
+                        if len(line.split(" ")) != 2:
+                            continue
+                        points_x.append(float(line.split(" ")[0]))
+                        points_y.append(float(line.split(" ")[1]))
+        return points_x, points_y

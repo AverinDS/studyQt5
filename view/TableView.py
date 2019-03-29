@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QTableWidgetItem
+from PyQt5.QtWidgets import QTableWidgetItem, QAbstractItemView, QMessageBox
 
 from controllers.TableController import TableController
 from windows.py.Ui_database_window import Ui_database_window
@@ -13,10 +13,16 @@ class TableView(QtWidgets.QMainWindow):
         self.ui = Ui_database_window()
         self.ui.setupUi(self)
         self.ui.updateButton.clicked.connect(self.update_table)
+        self.ui.tableWidget.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.ui.tableWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.ui.showGraphicButton.clicked.connect(self.show_graphic)
+
+        self.update_table()
         # Every list contains filename, trend, season, rand component
 
     def update_table(self):
         self.ui.tableWidget.clear()
+        self.ui.tableWidget.setSortingEnabled(False)
         self.ui.tableWidget.setHorizontalHeaderItem(0, QTableWidgetItem("Filename"))
         self.ui.tableWidget.setHorizontalHeaderItem(1, QTableWidgetItem("Trend"))
         self.ui.tableWidget.setHorizontalHeaderItem(2, QTableWidgetItem("Season"))
@@ -32,3 +38,12 @@ class TableView(QtWidgets.QMainWindow):
 
         self.ui.tableWidget.resizeColumnsToContents()
         self.ui.tableWidget.resizeRowsToContents()
+        self.ui.tableWidget.setSortingEnabled(True)
+
+    def show_graphic(self):
+        if len(self.ui.tableWidget.selectedItems()) > 0:
+            self.table_controller.show_graphic(
+                self.ui.tableWidget.selectedItems().__getitem__(0).text()
+            )
+        else:
+            QMessageBox.warning(self, "Warning", "File not chosen")
