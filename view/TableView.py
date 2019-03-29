@@ -16,6 +16,9 @@ class TableView(QtWidgets.QMainWindow):
         self.ui.tableWidget.setSelectionMode(QAbstractItemView.SingleSelection)
         self.ui.tableWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.ui.showGraphicButton.clicked.connect(self.show_graphic)
+        self.ui.viewInFileButton.clicked.connect(self.show_in_file)
+        self.ui.addButton.hide()
+        self.ui.deleteButton.hide()
 
         self.update_table()
         # Every list contains filename, trend, season, rand component
@@ -47,3 +50,15 @@ class TableView(QtWidgets.QMainWindow):
             )
         else:
             QMessageBox.warning(self, "Warning", "File not chosen")
+
+    def show_in_file(self):
+        filename = self.get_current_filename()
+        if filename is not None:
+            self.table_controller.open_file(filename)
+
+    def get_current_filename(self):
+        if len(self.ui.tableWidget.selectedItems()) > 0:
+            return self.ui.tableWidget.selectedItems().__getitem__(0).text()
+        else:
+            QMessageBox.warning(self, "Warning", "File not chosen")
+            return None

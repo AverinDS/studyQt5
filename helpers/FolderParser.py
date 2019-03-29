@@ -80,3 +80,12 @@ class FolderParser:
                         points_x.append(float(line.split(" ")[0]))
                         points_y.append(float(line.split(" ")[1]))
         return points_x, points_y
+
+    def get_path_to_file(self, filename):
+        for folder in folders:
+            if not os.path.exists(path_to_timeseries + folder):
+                continue
+            file_names = os.listdir(path_to_timeseries + folder)
+            if file_names.__contains__(filename):
+                return path_to_timeseries + folder + "/" + filename
+        return None
