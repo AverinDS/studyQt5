@@ -17,8 +17,6 @@ class TableView(QtWidgets.QMainWindow):
         self.ui.tableWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.ui.showGraphicButton.clicked.connect(self.show_graphic)
         self.ui.viewInFileButton.clicked.connect(self.show_in_file)
-        self.ui.addButton.hide()
-        self.ui.deleteButton.hide()
 
         self.update_table()
         # Every list contains filename, trend, season, rand component

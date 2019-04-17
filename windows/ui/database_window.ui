@@ -1,232 +1,157 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>database_window</class>
- <widget class="QMainWindow" name="database_window">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>780</width>
-    <height>470</height>
-   </rect>
-  </property>
-  <property name="minimumSize">
-   <size>
-    <width>780</width>
-    <height>470</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>780</width>
-    <height>470</height>
-   </size>
-  </property>
-  <property name="windowTitle">
-   <string>MainWindow</string>
-  </property>
-  <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="updateButton">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>380</y>
-      <width>40</width>
-      <height>40</height>
-     </rect>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>40</width>
-      <height>40</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>40</width>
-      <height>40</height>
-     </size>
-    </property>
-    <property name="autoFillBackground">
-     <bool>false</bool>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../resources/refresh_icon.png</normaloff>../../resources/refresh_icon.png</iconset>
-    </property>
-    <property name="checkable">
-     <bool>false</bool>
-    </property>
-    <property name="autoRepeat">
-     <bool>false</bool>
-    </property>
-    <property name="autoExclusive">
-     <bool>false</bool>
-    </property>
-    <property name="autoDefault">
-     <bool>false</bool>
-    </property>
-    <property name="default">
-     <bool>false</bool>
-    </property>
-    <property name="flat">
-     <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="addButton">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>380</y>
-      <width>40</width>
-      <height>40</height>
-     </rect>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>40</width>
-      <height>40</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>40</width>
-      <height>40</height>
-     </size>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../resources/plus_icon.png</normaloff>../../resources/plus_icon.png</iconset>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="deleteButton">
-    <property name="geometry">
-     <rect>
-      <x>110</x>
-      <y>380</y>
-      <width>40</width>
-      <height>40</height>
-     </rect>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>40</width>
-      <height>40</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>40</width>
-      <height>40</height>
-     </size>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="icon">
-     <iconset>
-      <normaloff>../../resources/minus_icon.png</normaloff>../../resources/minus_icon.png</iconset>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="showGraphicButton">
-    <property name="geometry">
-     <rect>
-      <x>640</x>
-      <y>20</y>
-      <width>113</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>113</width>
-      <height>32</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>113</width>
-      <height>32</height>
-     </size>
-    </property>
-    <property name="text">
-     <string>Show Graphic</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="viewInFileButton">
-    <property name="geometry">
-     <rect>
-      <x>640</x>
-      <y>70</y>
-      <width>113</width>
-      <height>32</height>
-     </rect>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>113</width>
-      <height>32</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>113</width>
-      <height>32</height>
-     </size>
-    </property>
-    <property name="text">
-     <string>View in file</string>
-    </property>
-   </widget>
-   <widget class="QTableWidget" name="tableWidget">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>611</width>
-      <height>361</height>
-     </rect>
-    </property>
-    <property name="sizeAdjustPolicy">
-     <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
-    </property>
-    <property name="showGrid">
-     <bool>true</bool>
-    </property>
-    <property name="gridStyle">
-     <enum>Qt::SolidLine</enum>
-    </property>
-    <property name="sortingEnabled">
-     <bool>true</bool>
-    </property>
-    <property name="rowCount">
-     <number>6</number>
-    </property>
-    <property name="columnCount">
-     <number>4</number>
-    </property>
-    <attribute name="horizontalHeaderCascadingSectionResizes">
-     <bool>true</bool>
-    </attribute>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <row/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-   </widget>
-  </widget>
- </widget>
- <resources/>
- <connections/>
+    <class>database_window</class>
+    <widget class="QMainWindow" name="database_window">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>780</width>
+                <height>470</height>
+            </rect>
+        </property>
+        <property name="windowTitle">
+            <string>MainWindow</string>
+        </property>
+        <widget class="QWidget" name="centralwidget">
+            <property name="enabled">
+                <bool>true</bool>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <widget class="QWidget" name="verticalLayoutWidget">
+                <property name="geometry">
+                    <rect>
+                        <x>10</x>
+                        <y>10</y>
+                        <width>751</width>
+                        <height>451</height>
+                    </rect>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_2">
+                    <property name="spacing">
+                        <number>0</number>
+                    </property>
+                    <property name="sizeConstraint">
+                        <enum>QLayout::SetMaximumSize</enum>
+                    </property>
+                    <property name="leftMargin">
+                        <number>1</number>
+                    </property>
+                    <property name="topMargin">
+                        <number>1</number>
+                    </property>
+                    <property name="rightMargin">
+                        <number>1</number>
+                    </property>
+                    <property name="bottomMargin">
+                        <number>1</number>
+                    </property>
+                    <item>
+                        <widget class="QTableWidget" name="tableWidget">
+                            <property name="sizeAdjustPolicy">
+                                <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+                            </property>
+                            <property name="showGrid">
+                                <bool>true</bool>
+                            </property>
+                            <property name="gridStyle">
+                                <enum>Qt::SolidLine</enum>
+                            </property>
+                            <property name="sortingEnabled">
+                                <bool>true</bool>
+                            </property>
+                            <property name="rowCount">
+                                <number>6</number>
+                            </property>
+                            <property name="columnCount">
+                                <number>4</number>
+                            </property>
+                            <attribute name="horizontalHeaderCascadingSectionResizes">
+                                <bool>true</bool>
+                            </attribute>
+                            <row/>
+                            <row/>
+                            <row/>
+                            <row/>
+                            <row/>
+                            <row/>
+                            <column/>
+                            <column/>
+                            <column/>
+                            <column/>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QPushButton" name="updateButton">
+                            <property name="autoFillBackground">
+                                <bool>false</bool>
+                            </property>
+                            <property name="text">
+                                <string/>
+                            </property>
+                            <property name="icon">
+                                <iconset>
+                                    <normaloff>././resources/refresh_icon.png</normaloff>
+                                    ../../resources/refresh_icon.png
+                                </iconset>
+                            </property>
+                            <property name="checkable">
+                                <bool>false</bool>
+                            </property>
+                            <property name="autoRepeat">
+                                <bool>false</bool>
+                            </property>
+                            <property name="autoExclusive">
+                                <bool>false</bool>
+                            </property>
+                            <property name="autoDefault">
+                                <bool>false</bool>
+                            </property>
+                            <property name="default">
+                                <bool>false</bool>
+                            </property>
+                            <property name="flat">
+                                <bool>false</bool>
+                            </property>
+                        </widget>
+                    </item>
+                    <item>
+                        <widget class="QSplitter" name="splitter">
+                            <property name="orientation">
+                                <enum>Qt::Horizontal</enum>
+                            </property>
+                            <widget class="QPushButton" name="viewInFileButton">
+                                <property name="minimumSize">
+                                    <size>
+                                        <width>113</width>
+                                        <height>32</height>
+                                    </size>
+                                </property>
+                                <property name="text">
+                                    <string>View in file</string>
+                                </property>
+                            </widget>
+                            <widget class="QPushButton" name="showGraphicButton">
+                                <property name="text">
+                                    <string>Show Graphic</string>
+                                </property>
+                            </widget>
+                            <widget class="QPushButton" name="generateBtn">
+                                <property name="text">
+                                    <string>Generate new data</string>
+                                </property>
+                            </widget>
+                        </widget>
+                    </item>
+                </layout>
+            </widget>
+        </widget>
+    </widget>
+    <resources/>
+    <connections/>
 </ui>
