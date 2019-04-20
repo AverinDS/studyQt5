@@ -2,24 +2,30 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QTableWidgetItem, QAbstractItemView, QMessageBox
 
 from controllers.TableController import TableController
-from windows.py.Ui_database_window import Ui_database_window
+from view.GeneratingForm import GeneratingForm
+from windows.py.UiDatabaseWindow import UiDatabaseWindow
 
 
-class TableView(QtWidgets.QMainWindow):
+class TableForm(QtWidgets.QMainWindow):
     table_controller = TableController()
 
     def __init__(self):
-        super(TableView, self).__init__()
-        self.ui = Ui_database_window()
+        super(TableForm, self).__init__()
+        self.ui = UiDatabaseWindow()
         self.ui.setupUi(self)
         self.ui.updateButton.clicked.connect(self.update_table)
         self.ui.tableWidget.setSelectionMode(QAbstractItemView.SingleSelection)
         self.ui.tableWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.ui.showGraphicButton.clicked.connect(self.show_graphic)
         self.ui.viewInFileButton.clicked.connect(self.show_in_file)
+        self.ui.generateBtn.clicked.connect(self.go_to_generate_form)
 
         self.update_table()
         # Every list contains filename, trend, season, rand component
+
+    def go_to_generate_form(self):
+        self.SW = GeneratingForm()
+        self.SW.show()
 
     def update_table(self):
         self.ui.tableWidget.clear()

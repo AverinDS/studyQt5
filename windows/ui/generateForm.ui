@@ -17,7 +17,7 @@
    <enum>Qt::LeftToRight</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QCheckBox" name="checkBox_4">
+      <widget class="QCheckBox" name="removeAllDataCheckBox">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -30,7 +30,7 @@
      <string>Remove all data</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="proceedButton">
     <property name="geometry">
      <rect>
       <x>270</x>
@@ -43,7 +43,7 @@
      <string>Proceed</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="cancelButton">
     <property name="geometry">
      <rect>
       <x>400</x>
@@ -68,7 +68,7 @@
     <property name="title">
      <string>Include components</string>
     </property>
-    <widget class="QCheckBox" name="checkBox_3">
+       <widget class="QCheckBox" name="SeasonsCheckBox">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -81,7 +81,7 @@
       <string>Seasons</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox">
+       <widget class="QCheckBox" name="trendCheckBox">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -94,7 +94,7 @@
       <string>Trend</string>
      </property>
     </widget>
-    <widget class="QCheckBox" name="checkBox_2">
+       <widget class="QCheckBox" name="randomCheckBox">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -120,7 +120,7 @@
     <property name="title">
      <string>Anomaly settings</string>
     </property>
-    <widget class="QRadioButton" name="radioButton">
+       <widget class="QRadioButton" name="singleRadioButton">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -133,7 +133,7 @@
       <string>Single</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="radioButton_2">
+       <widget class="QRadioButton" name="groupRadioButton">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -146,7 +146,7 @@
       <string>Group </string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="radioButton_3">
+       <widget class="QRadioButton" name="AvoidRadioButton">
      <property name="geometry">
       <rect>
        <x>10</x>

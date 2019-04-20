@@ -9,7 +9,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_database_window(object):
+class UiDatabaseWindow(object):
     def setupUi(self, database_window):
         database_window.setObjectName("database_window")
         database_window.resize(780, 470)

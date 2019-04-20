@@ -1,9 +1,10 @@
-from PyQt5 import QtWidgets
-
-from view.TableView import TableView
 import sys
 
+from PyQt5 import QtWidgets
+
+from view.TableForm import TableForm
+
 app = QtWidgets.QApplication([])
-application = TableView()
+application = TableForm()
 application.show()
 sys.exit(app.exec())
