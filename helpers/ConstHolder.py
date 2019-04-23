@@ -12,5 +12,5 @@ class AnomalyConst:
 
 class GeneratorSetting:
     COUNT_OF_MODELS = 10
-    MAX_TIME = 200
+    MAX_TIME = 800
     MAX_VALUE = 100

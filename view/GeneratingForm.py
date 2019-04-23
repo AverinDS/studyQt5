@@ -2,7 +2,7 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 
 from controllers.GeneratingController import GeneratingController
-from helpers.ConstHolder import ComponentsConst
+from helpers.ConstHolder import ComponentsConst, AnomalyConst
 from windows.py.UiGenerateForm import UiGenerateForm
 
 
@@ -19,6 +19,18 @@ class GeneratingForm(QtWidgets.QMainWindow):
         self.ui.removeAllDataCheckBox.stateChanged.connect(self.remove_all_data_changed)
         self.ui.cancelButton.clicked.connect(self.cancel)
         self.ui.proceedButton.clicked.connect(self.proceed)
+        self.ui.singleRadioButton.clicked.connect(self.single_anomaly_check)
+        self.ui.groupRadioButton.clicked.connect(self.group_anomaly_check)
+        self.ui.avoidRadioButton.clicked.connect(self.avoid_anomaly_check)
+
+    def single_anomaly_check(self):
+        self.generation_controller.anomaly = AnomalyConst.SINGLE
+
+    def group_anomaly_check(self):
+        self.generation_controller.anomaly = AnomalyConst.GROUP
+
+    def avoid_anomaly_check(self):
+        self.generation_controller.anomaly = AnomalyConst.AVOID
 
     def random_check_changed(self):
         if self.ui.randomCheckBox.isChecked():

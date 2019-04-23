@@ -91,10 +91,29 @@ class GeneratorTS:
         for t in range(0, GeneratorSetting.MAX_TIME):
             list_of_points.append(list1[t] + list2[t] + list3[t])
 
+        self.add_anomaly(list_of_points)
+
         return list_of_points
 
-    def save_model_to_file(self, list_points, path, filename):
+    def add_anomaly(self, list_of_points):
+        count_of_anomaly = int(GeneratorSetting.MAX_TIME / 15)
+        if self.anomaly_strategy == AnomalyConst.AVOID:
+            return list_of_points
+        if self.anomaly_strategy == AnomalyConst.SINGLE:
+            for i in range(0, count_of_anomaly):
+                list_of_points[random.randint(0, GeneratorSetting.MAX_TIME - 1)] = random.randint(0,
+                                                                                                  GeneratorSetting.MAX_VALUE)
+        if self.anomaly_strategy == AnomalyConst.GROUP:
+            for i in range(0, count_of_anomaly):
+                group_size = random.randint(0, int(GeneratorSetting.MAX_TIME / 100))
+                start_index = random.randint(0, GeneratorSetting.MAX_TIME)
 
+                for j in range(start_index, start_index + group_size):
+                    if j >= len(list_of_points):
+                        continue
+                    list_of_points[j] = random.randint(0, GeneratorSetting.MAX_VALUE)
+
+    def save_model_to_file(self, list_points, path, filename):
         if not os.path.exists(self.path_to_timeseries):
             os.makedirs(self.path_to_timeseries)
         path = self.path_to_timeseries + path
