@@ -1,10 +1,53 @@
 from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QMessageBox
 
+from controllers.GeneratingController import GeneratingController
+from helpers.ConstHolder import ComponentsConst
 from windows.py.UiGenerateForm import UiGenerateForm
 
 
 class GeneratingForm(QtWidgets.QMainWindow):
+    generation_controller = GeneratingController()
+
     def __init__(self):
         super(GeneratingForm, self).__init__()
         self.ui = UiGenerateForm()
         self.ui.setupUi(self)
+        self.ui.randomCheckBox.stateChanged.connect(self.random_check_changed)
+        self.ui.seasonsCheckBox.stateChanged.connect(self.seasons_check_changed)
+        self.ui.trendCheckBox.stateChanged.connect(self.trend_check_changed)
+        self.ui.removeAllDataCheckBox.stateChanged.connect(self.remove_all_data_changed)
+        self.ui.cancelButton.clicked.connect(self.cancel)
+        self.ui.proceedButton.clicked.connect(self.proceed)
+
+    def random_check_changed(self):
+        if self.ui.randomCheckBox.isChecked():
+            self.generation_controller.add_component(ComponentsConst.RANDOM)
+        else:
+            self.generation_controller.remove_component(ComponentsConst.RANDOM)
+
+    def seasons_check_changed(self):
+        if self.ui.seasonsCheckBox.isChecked():
+            self.generation_controller.add_component(ComponentsConst.SEASONS)
+        else:
+            self.generation_controller.remove_component(ComponentsConst.SEASONS)
+
+    def trend_check_changed(self):
+        if self.ui.trendCheckBox.isChecked():
+            self.generation_controller.add_component(ComponentsConst.TREND)
+        else:
+            self.generation_controller.remove_component(ComponentsConst.TREND)
+
+    def remove_all_data_changed(self):
+        if self.ui.removeAllDataCheckBox.isChecked():
+            self.generation_controller.clear_data = True
+        else:
+            self.generation_controller.clear_data = False
+
+    def cancel(self):
+        self.close()
+
+    def proceed(self):
+        self.generation_controller.generate_data()
+        QMessageBox.warning(self, "Notification", "Generating complete!")
+        self.close()

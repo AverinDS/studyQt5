@@ -68,7 +68,7 @@
     <property name="title">
      <string>Include components</string>
     </property>
-       <widget class="QCheckBox" name="SeasonsCheckBox">
+       <widget class="QCheckBox" name="seasonsCheckBox">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -146,7 +146,7 @@
       <string>Group </string>
      </property>
     </widget>
-       <widget class="QRadioButton" name="AvoidRadioButton">
+       <widget class="QRadioButton" name="avoidRadioButton">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -158,6 +158,9 @@
      <property name="text">
       <string>Avoid</string>
      </property>
+           <property name="checked">
+               <bool>true</bool>
+           </property>
     </widget>
    </widget>
   </widget>

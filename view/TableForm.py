@@ -37,11 +37,12 @@ class TableForm(QtWidgets.QMainWindow):
 
         table_data = self.table_controller.get_table_data()
         self.ui.tableWidget.setRowCount(len(table_data))
-        self.ui.tableWidget.setColumnCount(len(table_data[0]))
-        for i in range(0, len(table_data)):
-            for j in range(0, len(table_data[0])):
-                cell_info = QTableWidgetItem(table_data[i][j])
-                self.ui.tableWidget.setItem(i, j, cell_info)
+        if len(table_data) != 0:
+            self.ui.tableWidget.setColumnCount(len(table_data[0]))
+            for i in range(0, len(table_data)):
+                for j in range(0, len(table_data[0])):
+                    cell_info = QTableWidgetItem(table_data[i][j])
+                    self.ui.tableWidget.setItem(i, j, cell_info)
 
         self.ui.tableWidget.resizeColumnsToContents()
         self.ui.tableWidget.resizeRowsToContents()
