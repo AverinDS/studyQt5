@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'database_window.ui'
 #
-# Created by: PyQt5 UI code generator 5.9.2
+# Created by: PyQt5 UI code generator 5.12.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -42,7 +42,7 @@ class UiDatabaseWindow(object):
         self.updateButton.setAutoFillBackground(False)
         self.updateButton.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("././resources/refresh_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("resources/refresh_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.updateButton.setIcon(icon)
         self.updateButton.setCheckable(False)
         self.updateButton.setAutoRepeat(False)
@@ -62,6 +62,8 @@ class UiDatabaseWindow(object):
         self.showGraphicButton.setObjectName("showGraphicButton")
         self.generateBtn = QtWidgets.QPushButton(self.splitter)
         self.generateBtn.setObjectName("generateBtn")
+        self.setTermBtn = QtWidgets.QPushButton(self.splitter)
+        self.setTermBtn.setObjectName("setTermBtn")
         self.verticalLayout_2.addWidget(self.splitter)
         database_window.setCentralWidget(self.centralwidget)
 
@@ -75,3 +77,6 @@ class UiDatabaseWindow(object):
         self.viewInFileButton.setText(_translate("database_window", "View in file"))
         self.showGraphicButton.setText(_translate("database_window", "Show Graphic"))
         self.generateBtn.setText(_translate("database_window", "Generate new data"))
+        self.setTermBtn.setText(_translate("database_window", "Set terms"))
+
+

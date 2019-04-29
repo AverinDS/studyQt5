@@ -14,3 +14,8 @@ class GeneratorSetting:
     COUNT_OF_MODELS = 10
     MAX_TIME = 800
     MAX_VALUE = 100
+
+
+class TermSetting:
+    FILENAME = "TERMS.csv"
+    SEPARATOR = "|"

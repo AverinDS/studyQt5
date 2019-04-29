@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QTableWidgetItem, QAbstractItemView, QMessageBox
 
 from controllers.TableController import TableController
 from view.GeneratingForm import GeneratingForm
+from view.TermForm import TermForm
 from windows.py.UiDatabaseWindow import UiDatabaseWindow
 
 
@@ -18,6 +19,7 @@ class TableForm(QtWidgets.QMainWindow):
         self.ui.tableWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.ui.showGraphicButton.clicked.connect(self.show_graphic)
         self.ui.viewInFileButton.clicked.connect(self.show_in_file)
+        self.ui.setTermBtn.clicked.connect(self.show_terms)
         self.ui.generateBtn.clicked.connect(self.go_to_generate_form)
 
         self.update_table()
@@ -25,6 +27,10 @@ class TableForm(QtWidgets.QMainWindow):
 
     def go_to_generate_form(self):
         self.SW = GeneratingForm()
+        self.SW.show()
+
+    def show_terms(self):
+        self.SW = TermForm()
         self.SW.show()
 
     def update_table(self):
@@ -47,6 +53,7 @@ class TableForm(QtWidgets.QMainWindow):
         self.ui.tableWidget.resizeColumnsToContents()
         self.ui.tableWidget.resizeRowsToContents()
         self.ui.tableWidget.setSortingEnabled(True)
+
 
     def show_graphic(self):
         if len(self.ui.tableWidget.selectedItems()) > 0:
