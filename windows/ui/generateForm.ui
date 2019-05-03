@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>564</width>
-    <height>228</height>
+    <width>749</width>
+    <height>234</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <enum>Qt::LeftToRight</enum>
   </property>
   <widget class="QWidget" name="centralwidget">
-      <widget class="QCheckBox" name="removeAllDataCheckBox">
+   <widget class="QCheckBox" name="removeAllDataCheckBox">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -29,11 +29,17 @@
     <property name="text">
      <string>Remove all data</string>
     </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+    <property name="tristate">
+     <bool>false</bool>
+    </property>
    </widget>
-      <widget class="QPushButton" name="proceedButton">
+   <widget class="QPushButton" name="proceedButton">
     <property name="geometry">
      <rect>
-      <x>270</x>
+      <x>470</x>
       <y>170</y>
       <width>113</width>
       <height>32</height>
@@ -43,10 +49,10 @@
      <string>Proceed</string>
     </property>
    </widget>
-      <widget class="QPushButton" name="cancelButton">
+   <widget class="QPushButton" name="cancelButton">
     <property name="geometry">
      <rect>
-      <x>400</x>
+      <x>600</x>
       <y>170</y>
       <width>113</width>
       <height>32</height>
@@ -61,14 +67,14 @@
      <rect>
       <x>30</x>
       <y>10</y>
-      <width>271</width>
+      <width>301</width>
       <height>141</height>
      </rect>
     </property>
     <property name="title">
      <string>Include components</string>
     </property>
-       <widget class="QCheckBox" name="seasonsCheckBox">
+    <widget class="QCheckBox" name="seasonsCheckBox">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -81,7 +87,7 @@
       <string>Seasons</string>
      </property>
     </widget>
-       <widget class="QCheckBox" name="trendCheckBox">
+    <widget class="QCheckBox" name="trendCheckBox">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -94,7 +100,7 @@
       <string>Trend</string>
      </property>
     </widget>
-       <widget class="QCheckBox" name="randomCheckBox">
+    <widget class="QCheckBox" name="randomCheckBox">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -107,20 +113,51 @@
       <string>Random</string>
      </property>
     </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>30</y>
+       <width>131</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Count of points for TS:</string>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="textEditCountPosintsTS">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>50</y>
+       <width>121</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>800</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_2">
     <property name="geometry">
      <rect>
-      <x>340</x>
+      <x>440</x>
       <y>10</y>
-      <width>161</width>
+      <width>271</width>
       <height>141</height>
      </rect>
     </property>
     <property name="title">
      <string>Anomaly settings</string>
     </property>
-       <widget class="QRadioButton" name="singleRadioButton">
+    <widget class="QRadioButton" name="singleRadioButton">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -133,7 +170,7 @@
       <string>Single</string>
      </property>
     </widget>
-       <widget class="QRadioButton" name="groupRadioButton">
+    <widget class="QRadioButton" name="groupRadioButton">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -146,7 +183,7 @@
       <string>Group </string>
      </property>
     </widget>
-       <widget class="QRadioButton" name="avoidRadioButton">
+    <widget class="QRadioButton" name="avoidRadioButton">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -158,9 +195,40 @@
      <property name="text">
       <string>Avoid</string>
      </property>
-           <property name="checked">
-               <bool>true</bool>
-           </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QTextEdit" name="textEditCountAnomaly">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>50</y>
+       <width>101</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="placeholderText">
+      <string>20</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>30</y>
+       <width>111</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>12</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Count of animaly:</string>
+     </property>
     </widget>
    </widget>
   </widget>
