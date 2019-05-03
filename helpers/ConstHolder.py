@@ -8,11 +8,12 @@ class AnomalyConst:
     SINGLE = "SINGLE"
     GROUP = "GROUP"
     AVOID = "AVOID"
+    MIN_GROUP_SIZE=2
 
 
 class GeneratorSetting:
     COUNT_OF_MODELS = 10
-    MAX_TIME = 800
+    MAX_TIME = 800  # can be changed by user
     MAX_VALUE = 100
 
 

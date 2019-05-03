@@ -22,6 +22,24 @@ class GeneratingForm(QtWidgets.QMainWindow):
         self.ui.singleRadioButton.clicked.connect(self.single_anomaly_check)
         self.ui.groupRadioButton.clicked.connect(self.group_anomaly_check)
         self.ui.avoidRadioButton.clicked.connect(self.avoid_anomaly_check)
+        self.ui.textEditCountAnomaly.textChanged.connect(self.count_anomaly_changed)
+        self.ui.textEditCountPosintsTS.textChanged.connect(self.count_points_changed)
+
+    def count_anomaly_changed(self):
+        if not str(self.ui.textEditCountAnomaly.toPlainText()).__eq__(''):
+            try:
+                self.generation_controller.set_count_anomaly(int(self.ui.textEditCountAnomaly.toPlainText()))
+            except Exception:
+                self.generation_controller.set_count_anomaly(20)
+                self.ui.textEditCountAnomaly.setText('20')
+
+    def count_points_changed(self):
+        if not str(self.ui.textEditCountPosintsTS.toPlainText()).__eq__(''):
+            try:
+                self.generation_controller.set_count_points_ts(int(self.ui.textEditCountPosintsTS.toPlainText()))
+            except Exception:
+                self.generation_controller.set_count_points_ts(800)
+                self.ui.textEditCountPosintsTS.setText('800')
 
     def single_anomaly_check(self):
         self.generation_controller.anomaly = AnomalyConst.SINGLE

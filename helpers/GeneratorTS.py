@@ -10,12 +10,17 @@ from .ConstHolder import *
 
 
 class GeneratorTS:
-    def __init__(self, components, anomaly_strategy, should_data_cleared) -> None:
+    def __init__(self, count_of_poinsts_ts, count_of_anomaly, components, anomaly_strategy,
+                 should_data_cleared) -> None:
+        self.count_of_anomaly = count_of_anomaly
+        self.count_of_points_ts = count_of_poinsts_ts
         self.components = components
         self.anomaly_strategy = anomaly_strategy
         self.should_data_cleared = should_data_cleared
 
     components = []
+    count_of_points_ts = 800
+    count_of_anomaly = 20
     anomaly_strategy = AnomalyConst.AVOID
     should_data_cleared = True
     path_to_timeseries = "./timeseries/"
@@ -96,22 +101,22 @@ class GeneratorTS:
         return list_of_points
 
     def add_anomaly(self, list_of_points):
-        count_of_anomaly = int(GeneratorSetting.MAX_TIME / 15)
         if self.anomaly_strategy == AnomalyConst.AVOID:
             return list_of_points
         if self.anomaly_strategy == AnomalyConst.SINGLE:
-            for i in range(0, count_of_anomaly):
-                list_of_points[random.randint(0, GeneratorSetting.MAX_TIME - 1)] = random.randint(0,
-                                                                                                  GeneratorSetting.MAX_VALUE)
+            for i in range(0, self.count_of_anomaly):
+                list_of_points[random.randint(0, GeneratorSetting.MAX_TIME - 1)] = random.randint(min(list_of_points),
+                                                                                                  max(list_of_points))
         if self.anomaly_strategy == AnomalyConst.GROUP:
-            for i in range(0, count_of_anomaly):
-                group_size = random.randint(0, int(GeneratorSetting.MAX_TIME / 100))
-                start_index = random.randint(0, GeneratorSetting.MAX_TIME)
+            for i in range(0, self.count_of_anomaly):
+                group_size = random.randint(AnomalyConst.MIN_GROUP_SIZE, int(
+                    GeneratorSetting.MAX_TIME / 100) + AnomalyConst.MIN_GROUP_SIZE)  # constraint interval from 2
+                start_index = random.randint(0, GeneratorSetting.MAX_TIME - 1)  # not more that last - 1
 
                 for j in range(start_index, start_index + group_size):
                     if j >= len(list_of_points):
                         continue
-                    list_of_points[j] = random.randint(0, GeneratorSetting.MAX_VALUE)
+                    list_of_points[j] = random.randint(min(list_of_points), max(list_of_points))
 
     def save_model_to_file(self, list_points, path, filename):
         if not os.path.exists(self.path_to_timeseries):
@@ -134,6 +139,7 @@ class GeneratorTS:
         os.makedirs(self.path_to_timeseries + folder_name)
 
     def start_generating(self):
+        GeneratorSetting.MAX_TIME = self.count_of_points_ts
         if self.should_data_cleared:
             if os.path.exists(self.path_to_timeseries):
                 rmtree(self.path_to_timeseries)

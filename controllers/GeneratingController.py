@@ -5,13 +5,22 @@ from helpers.GeneratorTS import GeneratorTS
 class GeneratingController:
     components = []
     anomaly = AnomalyConst.AVOID
-    clear_data = False
+    clear_data = True
+    # default values
+    count_anomaly = 20
+    count_of_points_ts = 800
 
     def set_clear_data(self, is_clear):
         self.clear_data = is_clear
 
     def set_anomaly(self, anomaly_const):
         self.anomaly = anomaly_const
+
+    def set_count_anomaly(self, count_anomaly):
+        self.count_anomaly = count_anomaly
+
+    def set_count_points_ts(self, count_points_ts):
+        self.count_of_points_ts = count_points_ts
 
     def add_component(self, component):
         if self.components.count(component) == 0:
@@ -24,5 +33,7 @@ class GeneratingController:
         generator = GeneratorTS(
             components=self.components,
             anomaly_strategy=self.anomaly,
-            should_data_cleared=self.clear_data)
+            should_data_cleared=self.clear_data,
+            count_of_poinsts_ts=self.count_of_points_ts,
+            count_of_anomaly=self.count_anomaly)
         generator.start_generating()
