@@ -3,5 +3,6 @@
 .idea/
 venv/
 timeseries/
+anomaly/
 TERMS.csv
 

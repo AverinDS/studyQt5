@@ -18,6 +18,9 @@ class TableController:
         self.graphic_helper.name_graphic = filename
 
         points_x, points_y = self.folder_parser.get_points_from_file_by_filename(filename)
+        points_x_anomaly, points_y_anomaly = self.folder_parser.get_anomaly_from_file(filename)
+        self.graphic_helper.points_x_anomaly = points_x_anomaly
+        self.graphic_helper.points_y_anomaly = points_y_anomaly
         self.graphic_helper.points_y = points_y
         self.graphic_helper.points_x = points_x
         self.graphic_helper.show_graphic()

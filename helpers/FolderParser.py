@@ -11,6 +11,7 @@ rand_season_name = "RAND_SEASON"
 
 folders = [random_name, season_name, lin_name, lin_season_name, lin_rand_name, lin_rand_season_name, rand_season_name]
 path_to_timeseries = "../modelling/timeseries/"
+path_to_anomaly = "../modelling/anomaly/"
 
 up = "Рост "
 down = "Падение "
@@ -80,6 +81,16 @@ class FolderParser:
                         points_x.append(float(line.split(" ")[0]))
                         points_y.append(float(line.split(" ")[1]))
         return points_x, points_y
+
+    def get_anomaly_from_file(self, filename):
+        x_anomaly = []
+        y_anomaly = []
+        with open(path_to_anomaly + filename) as file:
+            for line in file.readlines():
+                x_anomaly.append(float(line.split(" ")[0]))
+                y_anomaly.append(float(line.split(" ")[1]))
+        return x_anomaly, y_anomaly
+
 
     def get_path_to_file(self, filename):
         for folder in folders:

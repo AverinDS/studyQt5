@@ -12,8 +12,8 @@ from .ConstHolder import *
 class GeneratorTS:
     def __init__(self, count_of_poinsts_ts, count_of_anomaly, components, anomaly_strategy,
                  should_data_cleared) -> None:
-        self.count_of_anomaly = count_of_anomaly
-        self.count_of_points_ts = count_of_poinsts_ts
+        self.count_of_anomaly = int(count_of_anomaly)
+        self.count_of_points_ts = int(count_of_poinsts_ts)
         self.components = components
         self.anomaly_strategy = anomaly_strategy
         self.should_data_cleared = should_data_cleared
@@ -24,6 +24,8 @@ class GeneratorTS:
     anomaly_strategy = AnomalyConst.AVOID
     should_data_cleared = True
     path_to_timeseries = "./timeseries/"
+    path_to_anomaly = "./anomaly/"
+    anomaly = []
 
     colors = cycle('bgrcmk')
 
@@ -68,7 +70,7 @@ class GeneratorTS:
             if index != -1:
                 list_of_points.append(math.sin(t) * self.get_a(index) * self.get_a(index))
             else:
-                list_of_points.append(math.sin(t))
+                list_of_points.append(math.sin(t) * 100)
 
         return list_of_points
 
@@ -105,8 +107,14 @@ class GeneratorTS:
             return list_of_points
         if self.anomaly_strategy == AnomalyConst.SINGLE:
             for i in range(0, self.count_of_anomaly):
-                list_of_points[random.randint(0, GeneratorSetting.MAX_TIME - 1)] = random.randint(min(list_of_points),
-                                                                                                  max(list_of_points))
+                list_index = random.randint(0, GeneratorSetting.MAX_TIME - 1)
+                while self.anomaly_has_exist(list_index):
+                    list_index = random.randint(0, GeneratorSetting.MAX_TIME - 1)
+
+                anomaly_value = random.randint(int(min(list_of_points)), int(max(list_of_points)))
+                list_of_points[list_index] = anomaly_value
+                self.anomaly.append([list_index, anomaly_value])
+
         if self.anomaly_strategy == AnomalyConst.GROUP:
             for i in range(0, self.count_of_anomaly):
                 group_size = random.randint(AnomalyConst.MIN_GROUP_SIZE, int(
@@ -114,9 +122,17 @@ class GeneratorTS:
                 start_index = random.randint(0, GeneratorSetting.MAX_TIME - 1)  # not more that last - 1
 
                 for j in range(start_index, start_index + group_size):
-                    if j >= len(list_of_points):
+                    if j >= len(list_of_points) or self.anomaly_has_exist(j):
                         continue
-                    list_of_points[j] = random.randint(min(list_of_points), max(list_of_points))
+                    anomaly_value = random.randint(int(min(list_of_points)), int(max(list_of_points)))
+                    list_of_points[j] = anomaly_value
+                    self.anomaly.append([j, anomaly_value])
+
+    def anomaly_has_exist(self, index):
+        for i, val in self.anomaly:
+            if i == index:
+                return True
+        return False
 
     def save_model_to_file(self, list_points, path, filename):
         if not os.path.exists(self.path_to_timeseries):
@@ -124,6 +140,9 @@ class GeneratorTS:
         path = self.path_to_timeseries + path
         if not os.path.exists(path):
             os.makedirs(path)
+        if not os.path.exists(self.path_to_anomaly):
+            os.makedirs(self.path_to_anomaly)
+
         copy_mark = '(copy)'
         while os.path.exists(path + str(filename) + '.txt'):
             filename += copy_mark
@@ -132,6 +151,14 @@ class GeneratorTS:
         new_file.write(str(len(list_points)) + '\n\n')
         for i in range(0, len(list_points)):
             new_file.write(str(i) + " " + str(list_points[i]) + '\n')
+        new_file.close()
+
+        anomaly_file = open(self.path_to_anomaly + str(filename) + '.txt', 'w')
+        for point in self.anomaly:
+            anomaly_file.write(str(point[0]) + " " + str(point[1]) + '\n')
+        anomaly_file.close()
+        self.anomaly = []
+
 
     def recreate_folder(self, folder_name):
         if os.path.exists(self.path_to_timeseries + folder_name):
@@ -139,6 +166,7 @@ class GeneratorTS:
         os.makedirs(self.path_to_timeseries + folder_name)
 
     def start_generating(self):
+        rmtree(self.path_to_anomaly)
         GeneratorSetting.MAX_TIME = self.count_of_points_ts
         if self.should_data_cleared:
             if os.path.exists(self.path_to_timeseries):
@@ -220,7 +248,6 @@ class GeneratorTS:
 
         if self.components.count(ComponentsConst.RANDOM) != 0:
             for j in range(0, GeneratorSetting.COUNT_OF_MODELS):
-                list_points = self.merge(self.random_time_series())
                 self.save_model_to_file(
                     list_points=self.merge(self.random_time_series()),
                     path=random_name + "/",
