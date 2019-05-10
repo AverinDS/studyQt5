@@ -24,6 +24,16 @@ class GeneratingForm(QtWidgets.QMainWindow):
         self.ui.avoidRadioButton.clicked.connect(self.avoid_anomaly_check)
         self.ui.textEditCountAnomaly.textChanged.connect(self.count_anomaly_changed)
         self.ui.textEditCountPosintsTS.textChanged.connect(self.count_points_changed)
+        self.ui.textEditCountOfTerms.textChanged.connect(self.count_terms_changed)
+
+    def count_terms_changed(self):
+        if not str(self.ui.textEditCountOfTerms.toPlainText()).__eq__(''):
+            try:
+                self.generation_controller.set_count_terms(int(self.ui.textEditCountOfTerms.toPlainText()))
+            except Exception:
+                self.generation_controller.set_count_terms(5)
+                self.ui.textEditCountOfTerms.setText('5')
+
 
     def count_anomaly_changed(self):
         if not str(self.ui.textEditCountAnomaly.toPlainText()).__eq__(''):

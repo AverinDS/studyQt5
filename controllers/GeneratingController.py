@@ -9,6 +9,7 @@ class GeneratingController:
     # default values
     count_anomaly = 20
     count_of_points_ts = 800
+    count_of_terms = 5
 
     def set_clear_data(self, is_clear):
         self.clear_data = is_clear
@@ -18,6 +19,9 @@ class GeneratingController:
 
     def set_count_anomaly(self, count_anomaly):
         self.count_anomaly = count_anomaly
+
+    def set_count_terms(self, count_terms):
+        self.count_of_terms = count_terms
 
     def set_count_points_ts(self, count_points_ts):
         self.count_of_points_ts = count_points_ts
@@ -34,6 +38,8 @@ class GeneratingController:
             components=self.components,
             anomaly_strategy=self.anomaly,
             should_data_cleared=self.clear_data,
-            count_of_poinsts_ts=self.count_of_points_ts,
-            count_of_anomaly=self.count_anomaly)
+            count_of_points_ts=self.count_of_points_ts,
+            count_of_anomaly=self.count_anomaly,
+            count_of_terms=self.count_of_terms
+        )
         generator.start_generating()

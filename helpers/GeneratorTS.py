@@ -6,26 +6,30 @@ from shutil import rmtree
 
 from helpers.FolderParser import random_name, season_name, lin_name, lin_season_name, lin_rand_name, \
     lin_rand_season_name, rand_season_name
+from helpers.TermHelper import TermHelper
 from .ConstHolder import *
 
 
 class GeneratorTS:
-    def __init__(self, count_of_poinsts_ts, count_of_anomaly, components, anomaly_strategy,
+    def __init__(self, count_of_points_ts, count_of_anomaly, count_of_terms, components, anomaly_strategy,
                  should_data_cleared) -> None:
         self.count_of_anomaly = int(count_of_anomaly)
-        self.count_of_points_ts = int(count_of_poinsts_ts)
+        self.count_of_points_ts = int(count_of_points_ts)
         self.components = components
         self.anomaly_strategy = anomaly_strategy
         self.should_data_cleared = should_data_cleared
+        self.count_of_terms = count_of_terms
 
     components = []
     count_of_points_ts = 800
     count_of_anomaly = 20
+    count_of_terms = 5
     anomaly_strategy = AnomalyConst.AVOID
     should_data_cleared = True
     path_to_timeseries = "./timeseries/"
     path_to_anomaly = "./anomaly/"
     anomaly = []
+    term_helper = TermHelper()
 
     colors = cycle('bgrcmk')
 
@@ -159,15 +163,19 @@ class GeneratorTS:
         anomaly_file.close()
         self.anomaly = []
 
-
     def recreate_folder(self, folder_name):
         if os.path.exists(self.path_to_timeseries + folder_name):
             rmtree(self.path_to_timeseries + folder_name)
         os.makedirs(self.path_to_timeseries + folder_name)
 
     def start_generating(self):
-        rmtree(self.path_to_anomaly)
+        if os.path.exists(self.path_to_anomaly):
+            rmtree(self.path_to_anomaly)
+
         GeneratorSetting.MAX_TIME = self.count_of_points_ts
+        TermSetting.COUNT_OF_TERMS = self.count_of_terms
+        self.term_helper.generate_terms()
+
         if self.should_data_cleared:
             if os.path.exists(self.path_to_timeseries):
                 rmtree(self.path_to_timeseries)

@@ -20,3 +20,4 @@ class GeneratorSetting:
 class TermSetting:
     FILENAME = "TERMS.csv"
     SEPARATOR = "|"
+    COUNT_OF_TERMS = 5  # can be changed by user
