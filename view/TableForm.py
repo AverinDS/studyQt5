@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QTableWidgetItem, QAbstractItemView, QMessageBox
 from controllers.TableController import TableController
 from view.GeneratingForm import GeneratingForm
 from view.TermForm import TermForm
+from view.TermInGraphicForm import TermInGraphicForm
 from windows.py.UiDatabaseWindow import UiDatabaseWindow
 
 
@@ -19,19 +20,29 @@ class TableForm(QtWidgets.QMainWindow):
         self.ui.tableWidget.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.ui.showGraphicButton.clicked.connect(self.show_graphic)
         self.ui.viewInFileButton.clicked.connect(self.show_in_file)
-        self.ui.setTermBtn.clicked.connect(self.show_terms)
+        self.ui.setTermBtn.clicked.connect(self.edit_terms)
         self.ui.generateBtn.clicked.connect(self.go_to_generate_form)
+        self.ui.btnShowTerms.clicked.connect(self.show_terms_for_graphic)
 
         self.update_table()
         # Every list contains filename, trend, season, rand component
 
-    def go_to_generate_form(self):
-        self.SW = GeneratingForm()
-        self.SW.show()
 
-    def show_terms(self):
-        self.SW = TermForm()
-        self.SW.show()
+    def show_terms_for_graphic(self):
+        if len(self.ui.tableWidget.selectedItems()) > 0:
+            self.ST = TermInGraphicForm(filename=self.ui.tableWidget.selectedItems().__getitem__(0).text())
+            self.ST.show()
+        else:
+            QMessageBox.warning(self, "Warning", "File not chosen")
+
+
+    def go_to_generate_form(self):
+        self.GF = GeneratingForm()
+        self.GF.show()
+
+    def edit_terms(self):
+        self.TF = TermForm()
+        self.TF.show()
 
     def update_table(self):
         self.ui.tableWidget.clear()
