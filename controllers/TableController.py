@@ -1,12 +1,15 @@
 import os
 
+from helpers.ConstHolder import TermSetting
 from helpers.FolderParser import FolderParser
 from helpers.GraphicHelper import GraphicHelper
+from helpers.TermHelper import TermHelper
 
 
 class TableController:
     folder_parser = FolderParser()
     graphic_helper = GraphicHelper()
+    term_helper = TermHelper()
 
     def get_table_data(self):
         return self.folder_parser.parse()
@@ -23,6 +26,7 @@ class TableController:
         self.graphic_helper.points_y_anomaly = points_y_anomaly
         self.graphic_helper.points_y = points_y
         self.graphic_helper.points_x = points_x
+        self.graphic_helper.terms_graphics = self.terms_to_graphic_data()
         self.graphic_helper.show_graphic()
 
     def open_file(self, filename):
@@ -30,3 +34,15 @@ class TableController:
         if path_to_file is not None:
             os.system("open '" + path_to_file + "'")
             # os.system("start " + path_to_file)
+
+    def terms_to_graphic_data(self, ):
+
+        terms = self.term_helper.get_terms()
+        graphics = []
+
+        for term in terms:
+            a = term[1]
+            b = term[2]
+            c = term[3]
+            graphics.append([[0, TermSetting.MARGIN, 0], [a, b, c]])
+        return graphics

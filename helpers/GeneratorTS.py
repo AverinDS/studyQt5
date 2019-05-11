@@ -74,7 +74,7 @@ class GeneratorTS:
             if index != -1:
                 list_of_points.append(math.sin(t) * self.get_a(index) * self.get_a(index))
             else:
-                list_of_points.append(math.sin(t) * 100)
+                list_of_points.append(math.sin(t) * GeneratorSetting.MAX_VALUE)
 
         return list_of_points
 
@@ -101,6 +101,15 @@ class GeneratorTS:
 
         for t in range(0, GeneratorSetting.MAX_TIME):
             list_of_points.append(list1[t] + list2[t] + list3[t])
+
+        # for t in range(0, GeneratorSetting.MAX_TIME):
+        #     if list1[t] + list2[t] + list3[t] <= GeneratorSetting.MAX_VALUE:
+        #         if list1[t] + list2[t] + list3[t] < 0:
+        #             list_of_points.append(0)
+        #         else:
+        #             list_of_points.append(list1[t] + list2[t] + list3[t])
+        #     else:
+        #         list_of_points.append(GeneratorSetting.MAX_VALUE)
 
         self.add_anomaly(list_of_points)
 

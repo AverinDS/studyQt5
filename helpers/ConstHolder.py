@@ -14,10 +14,11 @@ class AnomalyConst:
 class GeneratorSetting:
     COUNT_OF_MODELS = 10
     MAX_TIME = 800  # can be changed by user
-    MAX_VALUE = 100
+    MAX_VALUE = 500
 
 
 class TermSetting:
     FILENAME = "TERMS.csv"
     SEPARATOR = "|"
     COUNT_OF_TERMS = 5  # can be changed by user
+    MARGIN = -20
