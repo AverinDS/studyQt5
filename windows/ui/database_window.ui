@@ -149,6 +149,11 @@
          <string>Set terms</string>
         </property>
        </widget>
+       <widget class="QPushButton" name="btnShowTerms">
+        <property name="text">
+         <string>Show Terms</string>
+        </property>
+       </widget>
       </widget>
      </item>
     </layout>
