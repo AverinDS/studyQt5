@@ -26,7 +26,7 @@ class TableController:
         self.graphic_helper.points_y_anomaly = points_y_anomaly
         self.graphic_helper.points_y = points_y
         self.graphic_helper.points_x = points_x
-        self.graphic_helper.terms_graphics = self.terms_to_graphic_data()
+        self.graphic_helper.terms_graphics = self.terms_to_graphic_data(filename)
         self.graphic_helper.show_graphic()
 
     def open_file(self, filename):
@@ -35,9 +35,9 @@ class TableController:
             os.system("open '" + path_to_file + "'")
             # os.system("start " + path_to_file)
 
-    def terms_to_graphic_data(self, ):
+    def terms_to_graphic_data(self,  filename):
 
-        terms = self.term_helper.get_terms()
+        terms = self.term_helper.get_terms(filename)
         graphics = []
 
         for term in terms:

@@ -100,7 +100,7 @@ class GeneratorTS:
             list3 = [0 for _ in range(0, GeneratorSetting.MAX_TIME)]
 
         for t in range(0, GeneratorSetting.MAX_TIME):
-            list_of_points.append(list1[t] + list2[t] + list3[t])
+            list_of_points.append(float(list1[t] + list2[t] + list3[t]))
 
         # for t in range(0, GeneratorSetting.MAX_TIME):
         #     if list1[t] + list2[t] + list3[t] <= GeneratorSetting.MAX_VALUE:
@@ -113,7 +113,7 @@ class GeneratorTS:
 
         self.add_anomaly(list_of_points)
 
-        return list_of_points
+        return list(list_of_points)
 
     def add_anomaly(self, list_of_points):
         if self.anomaly_strategy == AnomalyConst.AVOID:
@@ -183,7 +183,6 @@ class GeneratorTS:
 
         GeneratorSetting.MAX_TIME = self.count_of_points_ts
         TermSetting.COUNT_OF_TERMS = self.count_of_terms
-        self.term_helper.generate_terms()
 
         if self.should_data_cleared:
             if os.path.exists(self.path_to_timeseries):
@@ -196,6 +195,7 @@ class GeneratorTS:
             self.recreate_folder(lin_rand_name)
             self.recreate_folder(lin_rand_season_name)
             self.recreate_folder(rand_season_name)
+            rmtree(TermSetting.FOLDERNAME)
 
         real_list_points = self.make_real_time_series()
         self.save_model_to_file(
@@ -207,66 +207,81 @@ class GeneratorTS:
         if self.components.count(ComponentsConst.TREND) != 0:
             for j in range(0, GeneratorSetting.COUNT_OF_MODELS):
                 list_points = self.merge(self.lin_function(self.get_a(j), self.get_b(j)))
+                filename = "Lin" + str(j) + self.get_name_a_b(j)
 
                 self.save_model_to_file(
                     list_points=list_points,
                     path=lin_name + "/",
-                    filename="Lin" + str(j) + self.get_name_a_b(j)
+                    filename=filename
                 )
+                self.term_helper.generate_terms(filename=filename, max_value=max(list_points), min_value=min(list_points))
 
         if self.components.count(ComponentsConst.TREND) != 0 and self.components.count(ComponentsConst.SEASONS) != 0:
             for j in range(0, GeneratorSetting.COUNT_OF_MODELS):
                 list_points = self.merge(self.lin_function(self.get_a(j), self.get_b(j)), self.season(index=j))
-
+                filename = "LinSeason" + str(j) + self.get_name_a_b(j)
                 self.save_model_to_file(
                     list_points=list_points,
                     path=lin_season_name + "/",
-                    filename="LinSeason" + str(j) + self.get_name_a_b(j)
+                    filename=filename
                 )
+
+                self.term_helper.generate_terms(filename=filename, max_value=max(list_points), min_value=min(list_points))
 
         if self.components.count(ComponentsConst.TREND) != 0 and self.components.count(ComponentsConst.RANDOM) != 0:
             for j in range(0, GeneratorSetting.COUNT_OF_MODELS):
                 list_points = self.merge(self.lin_function(self.get_a(j), self.get_b(j)), self.random_time_series())
+                filename = "LinRand" + str(j) + self.get_name_a_b(j)
 
                 self.save_model_to_file(
                     list_points=list_points,
                     path=lin_rand_name + "/",
-                    filename="LinRand" + str(j) + self.get_name_a_b(j)
+                    filename=filename
                 )
+                self.term_helper.generate_terms(filename=filename, max_value=max(list_points), min_value=min(list_points))
 
         if self.components.count(ComponentsConst.TREND) != 0 and self.components.count(ComponentsConst.SEASONS) != 0:
             for j in range(0, GeneratorSetting.COUNT_OF_MODELS):
                 list_points = self.merge(self.lin_function(self.get_a(j), self.get_b(j)), self.season(),
                                          self.random_time_series())
+                filename="LinRandSeason" + str(j) + self.get_name_a_b(j)
 
                 self.save_model_to_file(
                     list_points=list_points,
                     path=lin_rand_season_name + "/",
-                    filename="LinRandSeason" + str(j) + self.get_name_a_b(j)
+                    filename=filename
                 )
+                self.term_helper.generate_terms(filename=filename, max_value=max(list_points), min_value=min(list_points))
 
         if self.components.count(ComponentsConst.SEASONS) != 0:
             for j in range(0, GeneratorSetting.COUNT_OF_MODELS):
                 list_points = self.merge(self.season())
+                filename = "Season" + str(j)
                 self.save_model_to_file(
                     list_points=list_points,
                     path=season_name + "/",
-                    filename="Season" + str(j)
+                    filename=filename
                 )
+                self.term_helper.generate_terms(filename=filename, max_value=max(list_points), min_value=min(list_points))
 
         if self.components.count(ComponentsConst.SEASONS) != 0 and self.components.count(ComponentsConst.RANDOM) != 0:
             for j in range(0, GeneratorSetting.COUNT_OF_MODELS):
                 list_points = self.merge(self.season(), self.random_time_series())
+                filename = "RandSeason" + str(j)
                 self.save_model_to_file(
                     list_points=list_points,
                     path=rand_season_name + "/",
-                    filename="RandSeason" + str(j)
+                    filename=filename
                 )
+                self.term_helper.generate_terms(filename=filename, max_value=max(list_points), min_value=min(list_points))
 
         if self.components.count(ComponentsConst.RANDOM) != 0:
             for j in range(0, GeneratorSetting.COUNT_OF_MODELS):
+                filename = "Rand" + str(j)
+                list_points = self.merge(self.random_time_series())
                 self.save_model_to_file(
-                    list_points=self.merge(self.random_time_series()),
+                    list_points=list_points,
                     path=random_name + "/",
-                    filename="Rand" + str(j)
+                    filename=filename
                 )
+                self.term_helper.generate_terms(filename=filename, max_value=max(list_points), min_value=min(list_points))

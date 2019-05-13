@@ -4,19 +4,22 @@ from helpers.ConstHolder import TermSetting, GeneratorSetting
 
 
 class TermHelper:
-    def get_terms(self):
+    def get_terms(self, filename):
         terms = []
 
-        if not os.path.exists(TermSetting.FILENAME):
+        if not os.path.exists(TermSetting.FOLDERNAME + "/" + filename):
             return terms
 
-        with open(TermSetting.FILENAME) as file:
+        with open(TermSetting.FOLDERNAME + "/" + filename) as file:
             for line in file.readlines():
                 terms.append(line.split(TermSetting.SEPARATOR))
         return terms
 
-    def save_terms(self, terms):
-        new_file = open(TermSetting.FILENAME, 'w')
+    def save_terms(self, terms, filename):
+        if not os.path.exists(TermSetting.FOLDERNAME):
+            os.makedirs(TermSetting.FOLDERNAME)
+
+        new_file = open(TermSetting.FOLDERNAME + "/" + filename + ".txt", 'w')
         for i in range(0, len(terms)):
             line = ""
             for j in range(0, len(terms[i])):
@@ -24,9 +27,9 @@ class TermHelper:
             new_file.write(line + '\n')
         new_file.close()
 
-    def generate_terms(self):
-        size_interval = GeneratorSetting.MAX_VALUE / (TermSetting.COUNT_OF_TERMS-1)
-        index = 0
+    def generate_terms(self, max_value, min_value, filename):
+        size_interval = (max_value + abs(min_value)) / (TermSetting.COUNT_OF_TERMS-1)
+        index = min_value
         terms = []
 
         while len(terms) != TermSetting.COUNT_OF_TERMS:
@@ -41,6 +44,5 @@ class TermHelper:
             terms.append(one_term)
             index += size_interval
 
-        self.save_terms(terms)
+        self.save_terms(terms, filename)
 
-    # def get_term_for_point(self, value_of_point):

@@ -8,11 +8,13 @@ from windows.py.UiTermForm import UiTermForm
 class TermForm(QtWidgets.QMainWindow):
     count_column = 4
     term_controller = TermController()
+    filename = ''
 
-    def __init__(self):
+    def __init__(self, filename):
         super(TermForm, self).__init__()
         self.ui = UiTermForm()
         self.ui.setupUi(self)
+        self.filename = filename
         self.ui.addRowBtn.clicked.connect(self.add_row)
         self.ui.okBtn.clicked.connect(self.save_and_close)
         self.ui.deleteBtn.clicked.connect(self.delete_row)
@@ -29,7 +31,7 @@ class TermForm(QtWidgets.QMainWindow):
         self.ui.termTable.updateGeometry()
 
     def load_data(self):
-        data = self.term_controller.get_data()
+        data = self.term_controller.get_data(filename=self.filename)
 
         self.ui.termTable.setRowCount(len(data))
         self.ui.termTable.setColumnCount(self.count_column)
@@ -55,7 +57,7 @@ class TermForm(QtWidgets.QMainWindow):
                 item_term.append(self.ui.termTable.item(i, j).text())
             terms.append(item_term)
         self.ui.termTable.setEnabled(True)
-        self.term_controller.save_data(terms)
+        self.term_controller.save_data(terms, filename=self.filename)
         self.close()
 
     def delete_row(self):

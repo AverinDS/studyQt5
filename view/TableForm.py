@@ -27,7 +27,6 @@ class TableForm(QtWidgets.QMainWindow):
         self.update_table()
         # Every list contains filename, trend, season, rand component
 
-
     def show_terms_for_graphic(self):
         if len(self.ui.tableWidget.selectedItems()) > 0:
             self.ST = TermInGraphicForm(filename=self.ui.tableWidget.selectedItems().__getitem__(0).text())
@@ -35,14 +34,16 @@ class TableForm(QtWidgets.QMainWindow):
         else:
             QMessageBox.warning(self, "Warning", "File not chosen")
 
-
     def go_to_generate_form(self):
         self.GF = GeneratingForm()
         self.GF.show()
 
     def edit_terms(self):
-        self.TF = TermForm()
-        self.TF.show()
+        if len(self.ui.tableWidget.selectedItems()) > 0:
+            self.TF = TermForm(filename=self.ui.tableWidget.selectedItems().__getitem__(0).text())
+            self.TF.show()
+        else:
+            QMessageBox.warning(self, "Warning", "File not chosen")
 
     def update_table(self):
         self.ui.tableWidget.clear()
@@ -64,7 +65,6 @@ class TableForm(QtWidgets.QMainWindow):
         self.ui.tableWidget.resizeColumnsToContents()
         self.ui.tableWidget.resizeRowsToContents()
         self.ui.tableWidget.setSortingEnabled(True)
-
 
     def show_graphic(self):
         if len(self.ui.tableWidget.selectedItems()) > 0:

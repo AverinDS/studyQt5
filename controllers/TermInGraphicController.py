@@ -10,7 +10,7 @@ class TermInGraphicController:
 
     def get_table_data(self, filename):
         rows = []
-        self.terms = self.termHelper.get_terms()
+        self.terms = self.termHelper.get_terms(filename=filename)
         points_x, points_y = self.folder_parser.get_points_from_file_by_filename(filename=filename)
         for i in range(0, len(points_x)):
             row = [points_x[i], points_y[i]]

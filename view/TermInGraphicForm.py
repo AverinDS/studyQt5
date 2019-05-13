@@ -16,6 +16,7 @@ class TermInGraphicForm(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
         self.set_up_data_table()
 
+
     def set_up_data_table(self):
         rows_table, term_names = self.termInGraphicController.get_table_data(filename=self.filename)
         self.ui.tableWidget.setHorizontalHeaderItem(0, QTableWidgetItem("X"))
