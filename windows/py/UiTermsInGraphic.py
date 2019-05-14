@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class UiTermsInGraphic(object):
     def setupUi(self, TermsInGraphic):
         TermsInGraphic.setObjectName("TermsInGraphic")
-        TermsInGraphic.resize(800, 600)
+        TermsInGraphic.resize(1004, 600)
         self.centralwidget = QtWidgets.QWidget(TermsInGraphic)
         self.centralwidget.setObjectName("centralwidget")
         self.tableWidget = QtWidgets.QTableWidget(self.centralwidget)
@@ -20,6 +20,31 @@ class UiTermsInGraphic(object):
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(0)
         self.tableWidget.setRowCount(0)
+        self.groupBox = QtWidgets.QGroupBox(self.centralwidget)
+        self.groupBox.setGeometry(QtCore.QRect(800, 10, 181, 171))
+        self.groupBox.setObjectName("groupBox")
+        self.verticalLayoutWidget = QtWidgets.QWidget(self.groupBox)
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 30, 165, 131))
+        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.radioButton_number_soft_matrix = QtWidgets.QRadioButton(self.verticalLayoutWidget)
+        self.radioButton_number_soft_matrix.setChecked(True)
+        self.radioButton_number_soft_matrix.setObjectName("radioButton_number_soft_matrix")
+        self.verticalLayout.addWidget(self.radioButton_number_soft_matrix)
+        self.radioButton_numbe_soft_vector = QtWidgets.QRadioButton(self.verticalLayoutWidget)
+        self.radioButton_numbe_soft_vector.setObjectName("radioButton_numbe_soft_vector")
+        self.verticalLayout.addWidget(self.radioButton_numbe_soft_vector)
+        self.radioButton_number_linguistic = QtWidgets.QRadioButton(self.verticalLayoutWidget)
+        self.radioButton_number_linguistic.setObjectName("radioButton_number_linguistic")
+        self.verticalLayout.addWidget(self.radioButton_number_linguistic)
+        self.radioButton_number_soft_linguistic = QtWidgets.QRadioButton(self.verticalLayoutWidget)
+        self.radioButton_number_soft_linguistic.setObjectName("radioButton_number_soft_linguistic")
+        self.verticalLayout.addWidget(self.radioButton_number_soft_linguistic)
+        self.radioButton_number_number = QtWidgets.QRadioButton(self.verticalLayoutWidget)
+        self.radioButton_number_number.setObjectName("radioButton_number_number")
+        self.verticalLayout.addWidget(self.radioButton_number_number)
         TermsInGraphic.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(TermsInGraphic)
@@ -28,5 +53,11 @@ class UiTermsInGraphic(object):
     def retranslateUi(self, TermsInGraphic):
         _translate = QtCore.QCoreApplication.translate
         TermsInGraphic.setWindowTitle(_translate("TermsInGraphic", "MainWindow"))
+        self.groupBox.setTitle(_translate("TermsInGraphic", "Mode"))
+        self.radioButton_number_soft_matrix.setText(_translate("TermsInGraphic", "Number-soft-matrix"))
+        self.radioButton_numbe_soft_vector.setText(_translate("TermsInGraphic", "Number-soft-vector"))
+        self.radioButton_number_linguistic.setText(_translate("TermsInGraphic", "Number-linguistic"))
+        self.radioButton_number_soft_linguistic.setText(_translate("TermsInGraphic", "Number-linguistic-soft"))
+        self.radioButton_number_number.setText(_translate("TermsInGraphic", "Number-Number"))
 
 

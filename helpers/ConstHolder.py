@@ -8,7 +8,7 @@ class AnomalyConst:
     SINGLE = "SINGLE"
     GROUP = "GROUP"
     AVOID = "AVOID"
-    MIN_GROUP_SIZE=2
+    MIN_GROUP_SIZE = 2
 
 
 class GeneratorSetting:
@@ -23,3 +23,11 @@ class TermSetting:
     SEPARATOR = "|"
     COUNT_OF_TERMS = 5  # can be changed by user
     MARGIN = -20
+
+
+class TranslatingConst:
+    NUMBER_SOFT_MATRIX = "NUMBER_SOFT_MATRIX"
+    NUMBER_SOFT_VECTOR = "NUMBER_SOFT_VECTOR"
+    NUMBER_LINGUISTIC = "NUMBER_SOFT_LINGUISTIC"
+    NUMBER_LINGUISTIC_SOFT = "NUMBER_LINGUISTIC_SOFT"
+    NUMBER_NUMBER = "NUMBER_NUMBER"
