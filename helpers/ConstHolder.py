@@ -23,6 +23,7 @@ class TermSetting:
     SEPARATOR = "|"
     COUNT_OF_TERMS = 5  # can be changed by user
     MARGIN = -20
+    ROUND_TO = 3
 
 
 class TranslatingConst:

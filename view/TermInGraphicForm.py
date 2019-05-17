@@ -36,7 +36,8 @@ class TermInGraphicForm(QtWidgets.QMainWindow):
 
         if self.termInGraphicController.mode == TranslatingConst.NUMBER_SOFT_VECTOR\
                 or self.termInGraphicController.mode == TranslatingConst.NUMBER_LINGUISTIC \
-                or self.termInGraphicController.mode == TranslatingConst.NUMBER_NUMBER:
+                or self.termInGraphicController.mode == TranslatingConst.NUMBER_NUMBER\
+                or self.termInGraphicController.mode == TranslatingConst.NUMBER_LINGUISTIC_SOFT:
             self.set_data_strings(rows_table=rows_table, count_column=count_column)
         else:
             self.set_data_numbers(rows_table=rows_table, count_column=count_column)
