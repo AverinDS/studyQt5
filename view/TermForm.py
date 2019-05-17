@@ -57,7 +57,7 @@ class TermForm(QtWidgets.QMainWindow):
                 item_term.append(self.ui.termTable.item(i, j).text())
             terms.append(item_term)
         self.ui.termTable.setEnabled(True)
-        self.term_controller.save_data(terms, filename=self.filename)
+        self.term_controller.save_data(terms, filename=self.filename.replace('.txt', ''))
         self.close()
 
     def delete_row(self):

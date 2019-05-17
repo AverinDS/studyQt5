@@ -102,15 +102,6 @@ class GeneratorTS:
         for t in range(0, GeneratorSetting.MAX_TIME):
             list_of_points.append(float(list1[t] + list2[t] + list3[t]))
 
-        # for t in range(0, GeneratorSetting.MAX_TIME):
-        #     if list1[t] + list2[t] + list3[t] <= GeneratorSetting.MAX_VALUE:
-        #         if list1[t] + list2[t] + list3[t] < 0:
-        #             list_of_points.append(0)
-        #         else:
-        #             list_of_points.append(list1[t] + list2[t] + list3[t])
-        #     else:
-        #         list_of_points.append(GeneratorSetting.MAX_VALUE)
-
         self.add_anomaly(list_of_points)
 
         return list(list_of_points)
