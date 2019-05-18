@@ -71,13 +71,13 @@ class TermInGraphicController:
 
     def get_number_number(self, filename):
         rows, term_names = self.get_number_soft_matrix_data(filename)
+        terms = self.termHelper.get_terms(filename=filename)
         numbers = []
         for i in range(0, len(rows)):
-            y = rows[i][1]
             sum_probabilities = 0
             sum_probabilities_x = 0
             for j in range(2, len(term_names) + 2):
-                sum_probabilities_x += y * rows[i][j]
+                sum_probabilities_x += float(terms[j-2][2]) * rows[i][j]
                 sum_probabilities += rows[i][j]
             numbers.append(sum_probabilities_x / sum_probabilities)
 
