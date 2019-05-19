@@ -54,10 +54,10 @@ class UiTermsInGraphic(object):
         _translate = QtCore.QCoreApplication.translate
         TermsInGraphic.setWindowTitle(_translate("TermsInGraphic", "MainWindow"))
         self.groupBox.setTitle(_translate("TermsInGraphic", "Mode"))
-        self.radioButton_number_soft_matrix.setText(_translate("TermsInGraphic", "Number-soft-matrix"))
-        self.radioButton_numbe_soft_vector.setText(_translate("TermsInGraphic", "Number-soft-vector"))
-        self.radioButton_number_linguistic.setText(_translate("TermsInGraphic", "Number-linguistic"))
-        self.radioButton_number_soft_linguistic.setText(_translate("TermsInGraphic", "Number-linguistic-soft"))
-        self.radioButton_number_number.setText(_translate("TermsInGraphic", "Number-Number"))
+        self.radioButton_number_soft_matrix.setText(_translate("TermsInGraphic", "NFXM"))
+        self.radioButton_numbe_soft_vector.setText(_translate("TermsInGraphic", "NFXV"))
+        self.radioButton_number_linguistic.setText(_translate("TermsInGraphic", "NLX"))
+        self.radioButton_number_soft_linguistic.setText(_translate("TermsInGraphic", "NLFX"))
+        self.radioButton_number_number.setText(_translate("TermsInGraphic", "NNX"))
 
 
