@@ -24,7 +24,7 @@ class UiTermsInGraphic(object):
         self.groupBox.setGeometry(QtCore.QRect(800, 10, 181, 171))
         self.groupBox.setObjectName("groupBox")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.groupBox)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 30, 165, 131))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 30, 174, 131))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -45,6 +45,9 @@ class UiTermsInGraphic(object):
         self.radioButton_number_number = QtWidgets.QRadioButton(self.verticalLayoutWidget)
         self.radioButton_number_number.setObjectName("radioButton_number_number")
         self.verticalLayout.addWidget(self.radioButton_number_number)
+        self.compareButton = QtWidgets.QPushButton(self.centralwidget)
+        self.compareButton.setGeometry(QtCore.QRect(830, 210, 113, 32))
+        self.compareButton.setObjectName("compareButton")
         TermsInGraphic.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(TermsInGraphic)
@@ -59,5 +62,6 @@ class UiTermsInGraphic(object):
         self.radioButton_number_linguistic.setText(_translate("TermsInGraphic", "NLX"))
         self.radioButton_number_soft_linguistic.setText(_translate("TermsInGraphic", "NLFX"))
         self.radioButton_number_number.setText(_translate("TermsInGraphic", "NNX"))
+        self.compareButton.setText(_translate("TermsInGraphic", "Compare"))
 
 

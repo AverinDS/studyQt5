@@ -41,7 +41,7 @@
       <rect>
        <x>10</x>
        <y>30</y>
-       <width>165</width>
+       <width>174</width>
        <height>131</height>
       </rect>
      </property>
@@ -49,7 +49,7 @@
       <item>
        <widget class="QRadioButton" name="radioButton_number_soft_matrix">
         <property name="text">
-         <string>Number-soft-matrix</string>
+         <string>NFXM</string>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -59,33 +59,46 @@
       <item>
        <widget class="QRadioButton" name="radioButton_numbe_soft_vector">
         <property name="text">
-         <string>Number-soft-vector</string>
+         <string>NFXV</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QRadioButton" name="radioButton_number_linguistic">
         <property name="text">
-         <string>Number-linguistic</string>
+         <string>NLX</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QRadioButton" name="radioButton_number_soft_linguistic">
         <property name="text">
-         <string>Number-linguistic-soft</string>
+         <string>NLFX</string>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QRadioButton" name="radioButton_number_number">
         <property name="text">
-         <string>Number-Number</string>
+         <string>NNX</string>
         </property>
        </widget>
       </item>
      </layout>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="compareButton">
+    <property name="geometry">
+     <rect>
+      <x>830</x>
+      <y>210</y>
+      <width>113</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Compare</string>
+    </property>
    </widget>
   </widget>
  </widget>

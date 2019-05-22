@@ -20,7 +20,12 @@ class TermInGraphicForm(QtWidgets.QMainWindow):
         self.ui.radioButton_number_linguistic.clicked.connect(self.number_linguistic)
         self.ui.radioButton_number_soft_linguistic.clicked.connect(self.number_soft_linguistic)
         self.ui.radioButton_number_number.clicked.connect(self.number_number)
+        self.ui.compareButton.clicked.connect(self.compare_click)
         self.number_soft_matrix()
+
+    def compare_click(self):
+        self.termInGraphicController.show_compare_graphic(self.filename)
+        print('assds')
 
     def set_data(self, rows_table, term_names):
         # rows_table, term_names = self.termInGraphicController.get_number_soft_matrix_data(filename=self.filename)
