@@ -1,6 +1,4 @@
 from matplotlib import pyplot as plt
-import random
-import matplotlib.lines as mlines
 
 
 class GraphicHelper:
@@ -16,6 +14,7 @@ class GraphicHelper:
     marker2 = 'r.'
 
     def show_graphic(self):
+        plt.title(self.name_graphic)
         plt.plot(self.points_x, self.points_y, self.marker1, label=self.name_graphic)
         plt.plot(self.points_x_anomaly, self.points_y_anomaly, self.marker2)
         for terms in self.terms_graphics:

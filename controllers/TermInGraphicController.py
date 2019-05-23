@@ -107,6 +107,7 @@ class TermInGraphicController:
 
     def show_compare_graphic(self, filename):
         rows, terms = self.get_table_data(filename)
+        self.graphicHelper.name_graphic = filename
         if self.mode == TranslatingConst.NUMBER_NUMBER:
             x, y = self.folder_parser.get_points_from_file_by_filename(filename)
             self.graphicHelper.points_x = x
