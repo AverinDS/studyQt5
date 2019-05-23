@@ -1,5 +1,6 @@
 from helpers.ConstHolder import TranslatingConst, TermSetting
 from helpers.FolderParser import FolderParser
+from helpers.GraphicHelper import GraphicHelper
 from helpers.TermHelper import TermHelper
 
 
@@ -7,6 +8,7 @@ class TermInGraphicController:
     terms = []
     table_data = []
     termHelper = TermHelper()
+    graphicHelper = GraphicHelper()
     folder_parser = FolderParser()
     mode = TranslatingConst.NUMBER_SOFT_MATRIX
 
@@ -102,3 +104,36 @@ class TermInGraphicController:
             return round(1 - ((y - b) / (c - b)), TermSetting.ROUND_TO)
 
         return 0
+
+    def show_compare_graphic(self, filename):
+        rows, terms = self.get_table_data(filename)
+        self.graphicHelper.name_graphic = filename
+        if self.mode == TranslatingConst.NUMBER_NUMBER:
+            x, y = self.folder_parser.get_points_from_file_by_filename(filename)
+            self.graphicHelper.points_x = x
+            self.graphicHelper.points_y = y
+            self.graphicHelper.points_x_anomaly = x
+            self.graphicHelper.points_y_anomaly = rows
+            self.graphicHelper.marker1 = 'b-'
+            self.graphicHelper.marker2 = 'y-'
+            self.graphicHelper.show_graphic()
+        else:
+            rows, term_names, probabilities = self.get_number_linguistic_soft(filename)
+            terms = self.termHelper.get_terms(filename)
+            points_y = []
+            for item in rows:
+                for term in terms:
+                    if item.__eq__(term[0]):
+                        points_y.append(float(term[2]))
+
+            x, y = self.folder_parser.get_points_from_file_by_filename(filename)
+            self.graphicHelper.points_x = x
+            self.graphicHelper.points_y = y
+            self.graphicHelper.points_x_anomaly = x
+            self.graphicHelper.points_y_anomaly = points_y
+            self.graphicHelper.marker1 = 'b-'
+            self.graphicHelper.marker2 = 'y-'
+            self.graphicHelper.show_graphic()
+
+
+

@@ -59,7 +59,7 @@ class TableController:
         x, y = self.folder_parser.get_points_from_file_by_filename(components[0])
         data_frame = pd.DataFrame(data=y)
         print(data_frame)
-        decomposed = seasonal_decompose(data_frame, model='additive', freq=100)
+        decomposed = seasonal_decompose(data_frame, model='additive', freq=len(y)-1)
         print(components[0])
         trend_component = self.prepare_dataframe(decomposed.trend)
         season_component = self.prepare_dataframe(decomposed.seasonal)
