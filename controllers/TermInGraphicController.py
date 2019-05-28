@@ -79,7 +79,7 @@ class TermInGraphicController:
             sum_probabilities = 0
             sum_probabilities_x = 0
             for j in range(2, len(term_names) + 2):
-                sum_probabilities_x += float(terms[j-2][2]) * rows[i][j]
+                sum_probabilities_x += float(terms[j - 2][2]) * rows[i][j]
                 sum_probabilities += rows[i][j]
             numbers.append(sum_probabilities_x / sum_probabilities)
 
@@ -116,6 +116,7 @@ class TermInGraphicController:
             self.graphicHelper.points_y_anomaly = rows
             self.graphicHelper.marker1 = 'b-'
             self.graphicHelper.marker2 = 'y-'
+            print(self.mape(rows,y,len(x)))
             self.graphicHelper.show_graphic()
         else:
             rows, term_names, probabilities = self.get_number_linguistic_soft(filename)
@@ -133,7 +134,12 @@ class TermInGraphicController:
             self.graphicHelper.points_y_anomaly = points_y
             self.graphicHelper.marker1 = 'b-'
             self.graphicHelper.marker2 = 'y-'
+            print("MAPE:",self.mape(points_y, y,len(x)))
             self.graphicHelper.show_graphic()
 
+    def mape(self, y_predict, y_real, x_count):
+        summ = 0
+        for i in range(0, len(y_real)):
+            summ += abs(y_real[i] - y_predict[i]) / y_real[i]
 
-
+        return 1 / x_count * summ

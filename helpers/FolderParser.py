@@ -45,9 +45,7 @@ class FolderParser:
                             patterns_file.append("-")
 
                 # find trend component
-                if folder.__contains__(lin_name):
-                    patterns_file.append("+")
-                else:
+                if not folder.__contains__(lin_name):
                     patterns_file.append("-")
 
                 #  find season component
@@ -90,7 +88,6 @@ class FolderParser:
                 x_anomaly.append(float(line.split(" ")[0]))
                 y_anomaly.append(float(line.split(" ")[1]))
         return x_anomaly, y_anomaly
-
 
     def get_path_to_file(self, filename):
         for folder in folders:

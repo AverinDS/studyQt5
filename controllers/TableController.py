@@ -59,26 +59,31 @@ class TableController:
         x, y = self.folder_parser.get_points_from_file_by_filename(components[0])
         data_frame = pd.DataFrame(data=y)
         print(data_frame)
-        decomposed = seasonal_decompose(data_frame, model='additive', freq=len(y)-1)
+        decomposed = seasonal_decompose(data_frame, model='additive', freq=10)
         print(components[0])
-        trend_component = self.prepare_dataframe(decomposed.trend)
-        season_component = self.prepare_dataframe(decomposed.seasonal)
+        # decomposed.plot()
+        # plt.show()
+        print(components[0])
+        trend_component = y
+        # trend_component = self.prepare_dataframe(decomposed.ob)
+        season_component = y
+        # season_component = self.prepare_dataframe(decomposed.observed)
         random_component = self.prepare_dataframe(decomposed.resid)
 
         if self.have_trend(trend_component, max(y)):
-            components.append("+")
+            components.append("T+")
         else:
-            components.append("-")
+            components.append("T-")
 
         if self.have_seasons(season_component, max(y)):
-            components.append("+")
+            components.append("S+")
         else:
-            components.append("-")
+            components.append("S-")
 
         if self.have_random(random_component, max(y)):
-            components.append("+")
+            components.append("R+")
         else:
-            components.append("-")
+            components.append("R-")
 
         return components
 
@@ -90,17 +95,31 @@ class TableController:
         return data
 
     def have_trend(self, data_frame, max_value):
-        if max(data_frame) == 0:
-            return False
-        if max(data_frame)/max_value > 0.3:
+        value_up = 0
+        value_down = 0
+        current = data_frame[0]
+        for i in range(1, len(data_frame)):
+            if current > data_frame[i]:
+                value_down += (current - data_frame[i])
+            else:
+                value_up += (data_frame[i] - current)
+            current = data_frame[i]
+        if abs(value_up - value_down) > 400:
             return True
         else:
             return False
 
     def have_seasons(self, data_frame, max_value):
-        if max(data_frame) == 0:
-            return False
-        if max(data_frame)/max_value  > 0.3:
+        value_up = 0
+        value_down = 0
+        current = data_frame[0]
+        for i in range(1, len(data_frame)):
+            if current > data_frame[i]:
+                value_down += 1
+            else:
+                value_up += 1
+            current = data_frame[i]
+        if abs(value_up - value_down) < 100 and value_down != 0 and value_up != 0:
             return True
         else:
             return False
@@ -108,7 +127,7 @@ class TableController:
     def have_random(self, data_frame, max_value):
         if max(data_frame) == 0:
             return False
-        if max(data_frame)/max_value  > 0.3:
+        if max(data_frame) / max_value > 0.3:
             return True
         else:
             return False
