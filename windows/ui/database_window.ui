@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>780</width>
-    <height>470</height>
+    <width>971</width>
+    <height>471</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -28,7 +28,7 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>751</width>
+      <width>954</width>
       <height>451</height>
      </rect>
     </property>
@@ -151,7 +151,17 @@
        </widget>
        <widget class="QPushButton" name="btnShowTerms">
         <property name="text">
-         <string>Show Terms</string>
+         <string>Make Translating</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="buttonClastering">
+        <property name="text">
+         <string>Clastering</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="buttonFindBest">
+        <property name="text">
+         <string>Find the best coef</string>
         </property>
        </widget>
       </widget>

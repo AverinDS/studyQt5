@@ -12,7 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class UiDatabaseWindow(object):
     def setupUi(self, database_window):
         database_window.setObjectName("database_window")
-        database_window.resize(780, 470)
+        database_window.resize(971, 471)
         self.centralwidget = QtWidgets.QWidget(database_window)
         self.centralwidget.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
@@ -22,7 +22,7 @@ class UiDatabaseWindow(object):
         self.centralwidget.setSizePolicy(sizePolicy)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 751, 451))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(10, 10, 954, 451))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetMaximumSize)
@@ -66,6 +66,10 @@ class UiDatabaseWindow(object):
         self.setTermBtn.setObjectName("setTermBtn")
         self.btnShowTerms = QtWidgets.QPushButton(self.splitter)
         self.btnShowTerms.setObjectName("btnShowTerms")
+        self.buttonClastering = QtWidgets.QPushButton(self.splitter)
+        self.buttonClastering.setObjectName("buttonClastering")
+        self.buttonFindBest = QtWidgets.QPushButton(self.splitter)
+        self.buttonFindBest.setObjectName("buttonFindBest")
         self.verticalLayout_2.addWidget(self.splitter)
         database_window.setCentralWidget(self.centralwidget)
 
@@ -80,6 +84,8 @@ class UiDatabaseWindow(object):
         self.showGraphicButton.setText(_translate("database_window", "Show Graphic"))
         self.generateBtn.setText(_translate("database_window", "Generate new data"))
         self.setTermBtn.setText(_translate("database_window", "Set terms"))
-        self.btnShowTerms.setText(_translate("database_window", "Show Terms"))
+        self.btnShowTerms.setText(_translate("database_window", "Make Translating"))
+        self.buttonClastering.setText(_translate("database_window", "Clastering"))
+        self.buttonFindBest.setText(_translate("database_window", "Find the best coef"))
 
 

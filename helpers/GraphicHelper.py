@@ -21,8 +21,5 @@ class GraphicHelper:
             data_x = [float(i) for i in terms[0]]
             data_y = [float(i) for i in terms[1]]
             plt.plot(data_x,data_y)
-
-
-
         plt.show()
 
