@@ -138,57 +138,60 @@ class TableController:
             return False
 
     def show_clastering(self):
-        normalize_real, predict_data = self.get_normal_data()
-        self.clasteringHelper.clastering_show(normalize_real, predict_data)
+        self.clasteringHelper.clastering_show(self.get_normal_data())
 
     def find_the_bets_coef(self):
-        real_data = self.get_table_data()
-        best = len(real_data)
-        BEST_TREND = 0
-        BEST_SEASON = 0
-        BEST_RAND = 0
+        print("OO")
+        # real_data = self.get_table_data()
+        # best = len(real_data)
+        # BEST_TREND = 0
+        # BEST_SEASON = 0
+        # BEST_RAND = 0
+        #
+        # bestmax = 0
+        # count_max_G = 0
+        # for i in range(0, int(self.getMaxValueFromGraphics()), 10):
+        #     print("new step TREND", i)
+        #     self.TREND_BORDER = i
+        #     normalize_real, predict_data = self.get_normal_data()
+        #     count_clast, max, count_max = self.clasteringHelper.clastering_count(normalize_real, predict_data)
+        #     if (count_clast < best and max>=bestmax) or (count_clast<=best and max> bestmax) or(max >=bestmax and count_max>=count_max_G):
+        #         BEST_TREND = i
+        #         best = count_clast
+        #         bestmax = max
+        #         count_max_G = count_max
+        #         print("NEW BEST_TREND", BEST_TREND)
+        #         print("COUNT_CLAST", best)
+        #
+        #     for i in range(0, int(self.getMaxValueFromGraphics()),10):
+        #         print("new step SEASON", i)
+        #         self.SEASON_BORDER = i
+        #         normalize_real, predict_data = self.get_normal_data()
+        #         count_clast, max, count_max  = self.clasteringHelper.clastering_count(normalize_real, predict_data)
+        #         if (count_clast < best and max>=bestmax) or (count_clast<=best and max> bestmax) or(max >=bestmax and count_max>=count_max_G):
+        #             BEST_SEASON = i
+        #             best = count_clast
+        #             print("NEW BEST_SEASON", BEST_SEASON)
+        #             print("COUNT_CLAST", best)
+        #
+        #     i = 0
+        #     while i < 10:
+        #         print("new step RAND", i)
+        #         self.RANDOM_BORDER = i
+        #         normalize_real, predict_data = self.get_normal_data()
+        #         count_clast, max, count_max  = self.clasteringHelper.clastering_count(normalize_real, predict_data)
+        #         if (count_clast < best and max>=bestmax) or (count_clast<=best and max> bestmax) or(max >=bestmax and count_max>=count_max_G):
+        #             BEST_RAND = i
+        #             best = count_clast
+        #             print("NEW BEST RAND", BEST_RAND)
+        #             print("COUNT_CLAST", best)
+        #
+        #         i+=0.1
 
-        for i in range(0, int(self.getMaxValueFromGraphics()), 10):
-            print("new step TREND", i)
-            self.TREND_BORDER = i
-            normalize_real, predict_data = self.get_normal_data()
-            count_clast = self.clasteringHelper.clastering_count(normalize_real, predict_data)
-            if count_clast < best:
-                BEST_TREND = i
-                best = count_clast
-                print("NEW BEST_TREND", BEST_TREND)
-                print("COUNT_CLAST", best)
-
-        for i in range(0, int(self.getMaxValueFromGraphics()),10):
-            print("new step SEASON", i)
-            self.SEASON_BORDER = i
-            normalize_real, predict_data = self.get_normal_data()
-            count_clast = self.clasteringHelper.clastering_count(normalize_real, predict_data)
-            if count_clast < best:
-                BEST_SEASON = i
-                best = count_clast
-                print("NEW BEST_SEASON", BEST_SEASON)
-                print("COUNT_CLAST", best)
-
-        i = 0
-        count_clast = 0
-        while i < 10:
-            print("new step RAND", i)
-            self.RANDOM_BORDER = i
-            normalize_real, predict_data = self.get_normal_data()
-            count_clast = self.clasteringHelper.clastering_count(normalize_real, predict_data)
-            if count_clast < best:
-                BEST_RAND = i
-                best = count_clast
-                print("NEW BEST RAND", BEST_RAND)
-                print("COUNT_CLAST", best)
-
-            i+=0.1
-
-        print("BEST TREND", BEST_TREND)
-        print("BEST SEASON", BEST_SEASON)
-        print("BEST RAND", BEST_RAND)
-        print("COUNT_CLAST", best)
+        # print("BEST TREND", BEST_TREND)
+        # print("BEST SEASON", BEST_SEASON)
+        # print("BEST RAND", BEST_RAND)
+        # print("COUNT_CLAST", best)
 
 
 
@@ -208,24 +211,17 @@ class TableController:
     def get_normal_data(self):
         real_data = self.get_table_data()
         normalize_real = []
-        predict_data = []
         for index in range(len(real_data)):
-            predict = []
             real = []
-            for i in range(1, 4):
+            real.append(real_data[index][0])
+            for i in range(1, 7):
                 if real_data[index][i].count('+') > 0:
                     real.append(2)
                 else:
                     real.append(1)
 
-                if real_data[index][i + 3].count('+') > 0:
-                    predict.append(2)
-                else:
-                    predict.append(1)
-
             normalize_real.append(real)
-            predict_data.append(predict)
-        return normalize_real, predict_data
+        return pd.DataFrame(normalize_real)
 
 
 
