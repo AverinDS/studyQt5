@@ -159,11 +159,6 @@
          <string>Clastering</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="buttonFindBest">
-        <property name="text">
-         <string>Find the best coef</string>
-        </property>
-       </widget>
       </widget>
      </item>
     </layout>

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'database_window.ui'
+# Form implementation generated from reading ui file 'windows/ui/database_window.ui'
 #
 # Created by: PyQt5 UI code generator 5.12.1
 #
@@ -68,8 +68,6 @@ class UiDatabaseWindow(object):
         self.btnShowTerms.setObjectName("btnShowTerms")
         self.buttonClastering = QtWidgets.QPushButton(self.splitter)
         self.buttonClastering.setObjectName("buttonClastering")
-        self.buttonFindBest = QtWidgets.QPushButton(self.splitter)
-        self.buttonFindBest.setObjectName("buttonFindBest")
         self.verticalLayout_2.addWidget(self.splitter)
         database_window.setCentralWidget(self.centralwidget)
 
@@ -86,6 +84,5 @@ class UiDatabaseWindow(object):
         self.setTermBtn.setText(_translate("database_window", "Set terms"))
         self.btnShowTerms.setText(_translate("database_window", "Make Translating"))
         self.buttonClastering.setText(_translate("database_window", "Clastering"))
-        self.buttonFindBest.setText(_translate("database_window", "Find the best coef"))
 
 

@@ -7,7 +7,7 @@ import scipy.cluster.hierarchy as hcluster
 import scipy.spatial.distance
 
 
-class ClasteringHelper:
+class ClusteringHelper:
 
     def mape(self, y_predict, y_real, x_count):
         summ = 0
@@ -19,25 +19,25 @@ class ClasteringHelper:
 
         return 1 / x_count * summ
 
-    def clastering_show(self, data):
 
-        km = KMeans(n_clusters=6)
+    def get_k_means(self, data):
+        km = KMeans(n_clusters=3)
         print(data)
         data_without_name = data.drop(data.columns[0], 1)
         scaler = StandardScaler()
         X = scaler.fit_transform(data_without_name)
         data['cluster'] = km.fit_predict(data_without_name)
-        print(data)
+        return data
 
+    def get_ierarch(self, data):
         thresh = 0
-        clusters = hcluster.fclusterdata(data_without_name, thresh, criterion="distance")
-        print(clusters)
-        plt.hist(data=data['cluster'], x=data[data.columns[0]])
-        # plt.scatter( y=numpy.transpose(data_without_name), c=clusters)
-        # plt.axis("equal")
-        # title = "threshold: %f, number of clusters: %d" % (thresh, len(set(clusters)))
-        # plt.title(title)
-        plt.show()
+        data_without_name = data.drop(data.columns[0], 1)
+        scaler = StandardScaler()
+        X = scaler.fit_transform(data_without_name)
+        data['cluster'] =hcluster.fclusterdata(data_without_name, thresh, criterion="distance")
+        return data
+
+
 
     def clastering_count(self, real, predict):
         X = [i for i in range(len(real))]

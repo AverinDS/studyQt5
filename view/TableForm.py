@@ -2,6 +2,7 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QTableWidgetItem, QAbstractItemView, QMessageBox
 
 from controllers.TableController import TableController
+from view.ClasteringForm import ClasteringForm
 from view.GeneratingForm import GeneratingForm
 from view.TermForm import TermForm
 from view.TermInGraphicForm import TermInGraphicForm
@@ -24,17 +25,13 @@ class TableForm(QtWidgets.QMainWindow):
         self.ui.generateBtn.clicked.connect(self.go_to_generate_form)
         self.ui.btnShowTerms.clicked.connect(self.show_terms_for_graphic)
         self.ui.buttonClastering.clicked.connect(self.show_clastering)
-        self.ui.buttonFindBest.clicked.connect(self.findTheBestCoef)
 
         self.update_table()
         # Every list contains filename, trend, season, rand component
     def show_clastering(self):
-        print("asdsad")
-        self.table_controller.show_clastering()
+        self.CT = ClasteringForm()
+        self.CT.show()
 
-    def findTheBestCoef(self):
-        print("SAd")
-        self.table_controller.find_the_bets_coef()
 
     def show_terms_for_graphic(self):
         if len(self.ui.tableWidget.selectedItems()) > 0:
